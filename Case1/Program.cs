@@ -10,9 +10,11 @@ if (!parsedNumber)
     Console.WriteLine("Введены некорректные данные.");
     return;
 }
-int[] arrayDigits = IntToArray(digit);
-int[] reverseArrays = new int[5];
-Array.Copy(arrayDigits, reverseArrays, 5);
+int quantity = HowManyDigits(digit);
+Console.WriteLine(quantity);
+int[] arrayDigits = IntToArray(digit, quantity);
+int[] reverseArrays = new int[quantity];
+Array.Copy(arrayDigits, reverseArrays, quantity);
 ReverseArray(reverseArrays);
 PrintArray(arrayDigits);
 PrintArray(reverseArrays);
@@ -42,10 +44,10 @@ void CompareArrays(int[] firstArray, int[] secondArray)
     Console.WriteLine("True.");
 }
 
-int[] IntToArray(int number)
+int[] IntToArray(int number, int quan)
 {
     int i = 0;
-    int[] array = new int[5];
+    int[] array = new int[quan];
     for (i = 0; number != 0; i++)
     {
         array[i] = number % 10;
@@ -78,4 +80,13 @@ void PrintArray(int[] mass)
         Console.Write($"{mass[count]} ");
         count++;
     }
+}
+int HowManyDigits(int figure)
+{
+    int i = 0;
+    for (i = 0; figure != 0; i++)
+    {
+        figure /= 10;
+    }
+    return i;
 }
