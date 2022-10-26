@@ -4,13 +4,32 @@
 Console.Clear();
 Console.WriteLine("Введите число: ");
 bool parsedNum = int.TryParse(Console.ReadLine(), out int num);
-TableOfCubes(num);
-
-void TableOfCubes(int x)
+if (!parsedNum)
 {
-    for (int i = 1; i <= x; i++)
+    Console.WriteLine("Введены некорректные данные");
+    return;
+}
+int[] cubesOfDigits = new int[num + 1];
+TableOfCubes(num, cubesOfDigits);
+PrintArray(cubesOfDigits);
+
+
+int[] TableOfCubes(int x, int[] array)
+{
+        for (int i = 1; i <= x; i++)
     {
-        int y = i * i * i;
-        Console.Write($"{y} ");
+        array[i] = i * i * i;
+    }
+    return array;
+}
+void PrintArray(int[] mass)
+{
+    int line = mass.Length;
+    int count = 1;
+    Console.WriteLine("Кубы чисел до введенного Вами числа: ");
+    while (count < line)
+    {
+        Console.Write($"{mass[count]} ");
+        count++;
     }
 }
